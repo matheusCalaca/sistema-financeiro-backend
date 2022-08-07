@@ -1,0 +1,97 @@
+package br.com.matheuscalaca.sistema.financeiro.entity;
+
+import org.springframework.lang.NonNull;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
+
+@Entity
+public class Meta {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String titulo;
+
+    private Date data;
+
+    private BigDecimal valor;
+
+    private  String descricao;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID", nullable = false)
+    private Cliente cliente;
+
+    public Meta() {
+    }
+
+    public Meta(String titulo, Date data, BigDecimal valor, String descricao) {
+        this.titulo = titulo;
+        this.data = data;
+        this.valor = valor;
+        this.descricao = descricao;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    @Override
+    public String toString() {
+        return "Meta{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", data=" + data +
+                ", valor=" + valor +
+                ", descricao='" + descricao + '\'' +
+                ", cliente=" + cliente +
+                '}';
+    }
+}
