@@ -12,4 +12,6 @@ public interface ReceitaServiceFacade {
     List<ReceitaDto> findByClientIdAndMonth(Long idCliente, Integer month);
 
     ReceitaDto findById(Long id);
+
+    boolean deleteById(Long id);
 }

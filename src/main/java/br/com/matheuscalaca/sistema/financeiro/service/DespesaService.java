@@ -51,4 +51,14 @@ public class DespesaService implements DespesaServiceFacade {
 
         return despesaDto;
     }
+
+    @Override
+    public boolean deleteById(Long id) {
+        try {
+            despesaRepository.deleteById(id);
+            return true;
+        }catch (Exception ex){
+            return false;
+        }
+    }
 }

@@ -49,4 +49,14 @@ public class ReceitaService implements ReceitaServiceFacade {
         ReceitaDto receitaDto = receitaRepository.findById(id).map(receita -> new ReceitaDto(receita.getId(), receita.getNome(), receita.getData(), receita.getValor(), receita.getDescricao())).get();
         return receitaDto;
     }
+
+    @Override
+    public boolean deleteById(Long id) {
+        try {
+            receitaRepository.deleteById(id);
+            return true;
+        }catch (Exception ex){
+            return false;
+        }
+    }
 }

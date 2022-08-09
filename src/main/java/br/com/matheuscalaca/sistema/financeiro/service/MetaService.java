@@ -50,4 +50,14 @@ public class MetaService implements MetaServiceFacade {
 
         return metaDto;
     }
+
+    @Override
+    public boolean deleteById(Long id) {
+        try {
+            metaRepository.deleteById(id);
+            return true;
+        }catch (Exception ex){
+            return false;
+        }
+    }
 }

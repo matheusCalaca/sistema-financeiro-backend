@@ -13,4 +13,6 @@ public interface MetaServiceFacade {
     List<MetaDto> findByClientId(Long idClient);
 
     MetaDto findById(Long id);
+
+    boolean deleteById(Long id);
 }

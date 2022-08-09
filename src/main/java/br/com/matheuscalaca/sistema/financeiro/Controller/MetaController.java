@@ -38,4 +38,11 @@ public class MetaController {
     public MetaDto getMetaById(@PathVariable("id") Long id) {
         return metaService.findById(id);
     }
+
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin(origins = "*")
+    public boolean deleteById(@PathVariable("id") Long id) {
+        return metaService.deleteById(id);
+    }
+
 }

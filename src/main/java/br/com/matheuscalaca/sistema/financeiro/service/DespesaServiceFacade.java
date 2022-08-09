@@ -11,4 +11,6 @@ public interface DespesaServiceFacade {
     List<DespesaDto> findByClientIdAndMonth(Long idCliente, Integer month);
 
     DespesaDto findById(Long id);
+
+    boolean deleteById(Long id);
 }
