@@ -1,9 +1,6 @@
 package br.com.matheuscalaca.sistema.financeiro.Controller;
 
-import br.com.matheuscalaca.sistema.financeiro.entity.dto.DespesaDto;
-import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaInsertDto;
-import br.com.matheuscalaca.sistema.financeiro.entity.dto.ReceitaDto;
-import br.com.matheuscalaca.sistema.financeiro.entity.dto.ReceitaInsertDto;
+import br.com.matheuscalaca.sistema.financeiro.entity.dto.*;
 import br.com.matheuscalaca.sistema.financeiro.service.MetaServiceFacade;
 import br.com.matheuscalaca.sistema.financeiro.service.ReceitaServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +29,9 @@ public class ReceitaController {
         return receitaService.findByClientIdAndMonth(idCliente, month);
     }
 
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin(origins = "*")
+    public ReceitaDto getReceitaById(@PathVariable("id") Long id) {
+        return receitaService.findById(id);
+    }
 }

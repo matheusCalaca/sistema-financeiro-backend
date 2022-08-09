@@ -43,4 +43,10 @@ public class ReceitaService implements ReceitaServiceFacade {
 
         return receitasDto;
     }
+
+    @Override
+    public ReceitaDto findById(Long id) {
+        ReceitaDto receitaDto = receitaRepository.findById(id).map(receita -> new ReceitaDto(receita.getId(), receita.getNome(), receita.getData(), receita.getValor(), receita.getDescricao())).get();
+        return receitaDto;
+    }
 }

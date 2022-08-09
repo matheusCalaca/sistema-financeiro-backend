@@ -10,4 +10,6 @@ public interface ReceitaServiceFacade {
     ReceitaInsertDto create(ReceitaInsertDto dto);
 
     List<ReceitaDto> findByClientIdAndMonth(Long idCliente, Integer month);
+
+    ReceitaDto findById(Long id);
 }
