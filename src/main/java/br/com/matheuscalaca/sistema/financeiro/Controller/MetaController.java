@@ -1,7 +1,9 @@
 package br.com.matheuscalaca.sistema.financeiro.Controller;
 
+import br.com.matheuscalaca.sistema.financeiro.entity.dto.DespesaDto;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaDto;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaInsertDto;
+import br.com.matheuscalaca.sistema.financeiro.entity.dto.ReceitaDto;
 import br.com.matheuscalaca.sistema.financeiro.service.MetaServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -29,5 +31,11 @@ public class MetaController {
         List<MetaDto> metas = metaService.findByClientId(idCliente);
         System.out.println(metas);
         return metas;
+    }
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin(origins = "*")
+    public MetaDto getMetaById(@PathVariable("id") Long id) {
+        return metaService.findById(id);
     }
 }

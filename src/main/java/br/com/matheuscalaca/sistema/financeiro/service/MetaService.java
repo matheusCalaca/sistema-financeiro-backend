@@ -1,8 +1,10 @@
 package br.com.matheuscalaca.sistema.financeiro.service;
 
 import br.com.matheuscalaca.sistema.financeiro.entity.Meta;
+import br.com.matheuscalaca.sistema.financeiro.entity.dto.DespesaDto;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaDto;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaInsertDto;
+import br.com.matheuscalaca.sistema.financeiro.entity.dto.ReceitaDto;
 import br.com.matheuscalaca.sistema.financeiro.repository.ClienteRepository;
 import br.com.matheuscalaca.sistema.financeiro.repository.MetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +42,12 @@ public class MetaService implements MetaServiceFacade {
         List<MetaDto> metasDto = metas.stream().map(meta -> new MetaDto(meta.getId(), meta.getTitulo(), meta.getData(), meta.getValor(), meta.getDescricao())).collect(Collectors.toList());
 
         return metasDto;
+    }
+
+    @Override
+    public MetaDto findById(Long id) {
+        MetaDto metaDto = metaRepository.findById(id).map(meta -> new MetaDto(meta.getId(), meta.getTitulo(), meta.getData(), meta.getValor(), meta.getDescricao())).get();
+
+        return metaDto;
     }
 }
