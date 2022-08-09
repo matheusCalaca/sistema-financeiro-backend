@@ -37,11 +37,18 @@ public class DespesaService implements DespesaServiceFacade {
     }
 
     @Override
-    public List<DespesaDto> findByClientId(Long idCliente, Integer month) {
+    public List<DespesaDto> findByClientIdAndMonth(Long idCliente, Integer month) {
         List<Despesa> despesas = despesaRepository.findByCliente_IdAndMonth(idCliente, month);
 
-        List<DespesaDto> despesaDtos = despesas.stream().map(despesa -> new DespesaDto(despesa.getId(), despesa.getNome(), despesa.getOnde(), despesa.getPorQue(), despesa.getValor(), despesa.getData(), despesa.getMeioDePagamento().getNome(), despesa.getCategoria().getNome())).collect(Collectors.toList());
+        List<DespesaDto> despesaDtos = despesas.stream().map(despesa -> new DespesaDto(despesa.getId(), despesa.getNome(), despesa.getOnde(), despesa.getPorQue(), despesa.getValor(), despesa.getData(), despesa.getMeioDePagamento(), despesa.getCategoria().getNome())).collect(Collectors.toList());
 
         return despesaDtos;
+    }
+
+    @Override
+    public DespesaDto findById(Long id) {
+        DespesaDto despesaDto = despesaRepository.findById(id).map(despesa -> new DespesaDto(despesa.getId(), despesa.getNome(), despesa.getOnde(), despesa.getPorQue(), despesa.getValor(), despesa.getData(), despesa.getMeioDePagamento(), despesa.getCategoria().getNome())).get();
+
+        return despesaDto;
     }
 }

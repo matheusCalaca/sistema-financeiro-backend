@@ -2,13 +2,12 @@ package br.com.matheuscalaca.sistema.financeiro.Controller;
 
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.DespesaDto;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.DespesaInsertDto;
-import br.com.matheuscalaca.sistema.financeiro.entity.dto.ReceitaInsertDto;
 import br.com.matheuscalaca.sistema.financeiro.service.DespesaServiceFacade;
-import br.com.matheuscalaca.sistema.financeiro.service.ReceitaServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 
@@ -28,6 +27,12 @@ public class DespesaController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "*")
     public List<DespesaDto> getDespesas(@RequestParam("idCliente") Long idCliente, @RequestParam("month") Integer month) {
-        return despesaService.findByClientId(idCliente, month);
+        return despesaService.findByClientIdAndMonth(idCliente, month);
+    }
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin(origins = "*")
+    public DespesaDto getDespesasById(@PathVariable("id") Long id) {
+        return despesaService.findById(id);
     }
 }

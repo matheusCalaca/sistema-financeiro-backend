@@ -1,5 +1,7 @@
 package br.com.matheuscalaca.sistema.financeiro.entity.dto;
 
+import br.com.matheuscalaca.sistema.financeiro.entity.enums.MeioDePagamento;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -17,18 +19,18 @@ public class DespesaDto {
 
     private Date data;
 
-    private String meioPagamento;
+    private MeioDePagamento meioDePagamento;
 
     private String categoria;
 
-    public DespesaDto(Long id, String nome, String onde, String porque, BigDecimal valor, Date data, String meioPagamento, String categoria) {
+    public DespesaDto(Long id, String nome, String onde, String porque, BigDecimal valor, Date data, MeioDePagamento meioDePagamento, String categoria) {
         this.id = id;
         this.nome = nome;
         this.onde = onde;
         this.porque = porque;
         this.valor = valor;
         this.data = data;
-        this.meioPagamento = meioPagamento;
+        this.meioDePagamento = meioDePagamento;
         this.categoria = categoria;
     }
 
@@ -83,12 +85,12 @@ public class DespesaDto {
         this.data = data;
     }
 
-    public String getMeioPagamento() {
-        return meioPagamento;
+    public MeioDePagamento getMeioDePagamento() {
+        return meioDePagamento;
     }
 
-    public void setMeioPagamento(String meioPagamento) {
-        this.meioPagamento = meioPagamento;
+    public void setMeioDePagamento(MeioDePagamento meioDePagamento) {
+        this.meioDePagamento = meioDePagamento;
     }
 
     public String getCategoria() {
@@ -108,7 +110,7 @@ public class DespesaDto {
                 ", porque='" + porque + '\'' +
                 ", valor=" + valor +
                 ", data=" + data +
-                ", meioPagamento='" + meioPagamento + '\'' +
+                ", meioPagamento='" + meioDePagamento + '\'' +
                 ", categoria='" + categoria + '\'' +
                 '}';
     }

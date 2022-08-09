@@ -7,13 +7,14 @@ import javax.persistence.Enumerated;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class DespesaInsertDto {
+public class DespesaUpdateDto {
 
+    private Long id;
     private String nome;
 
     private String onde;
 
-    private String porque;
+    private String porQue;
 
     private BigDecimal valor;
 
@@ -24,7 +25,26 @@ public class DespesaInsertDto {
 
     private Long idCategoria;
 
-    private Long idCliente;
+    public DespesaUpdateDto() {
+    }
+
+    public DespesaUpdateDto(Long id, String nome, String onde, String porQue, BigDecimal valor, Date data, MeioDePagamento meioDePagamento) {
+        this.id = id;
+        this.nome = nome;
+        this.onde = onde;
+        this.porQue = porQue;
+        this.valor = valor;
+        this.data = data;
+        this.meioDePagamento = meioDePagamento;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -42,12 +62,12 @@ public class DespesaInsertDto {
         this.onde = onde;
     }
 
-    public String getPorque() {
-        return porque;
+    public String getPorQue() {
+        return porQue;
     }
 
-    public void setPorque(String porque) {
-        this.porque = porque;
+    public void setPorQue(String porQue) {
+        this.porQue = porQue;
     }
 
     public BigDecimal getValor() {
@@ -82,29 +102,19 @@ public class DespesaInsertDto {
         this.idCategoria = idCategoria;
     }
 
-    public Long getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
-    }
-
     @Override
     public String toString() {
-        return "DespesaInsertDto{" +
-                "nome='" + nome + '\'' +
+        return "DespesaUpdateDto{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
                 ", onde='" + onde + '\'' +
-                ", porQue='" + porque + '\'' +
+                ", porQue='" + porQue + '\'' +
                 ", valor=" + valor +
                 ", data=" + data +
                 ", meioDePagamento=" + meioDePagamento +
                 ", idCategoria=" + idCategoria +
-                ", idCliente=" + idCliente +
                 '}';
     }
 
-    public Despesa toDespesa() {
-        return new Despesa(this.nome, this.onde, this.porque, this.valor, this.data, this.meioDePagamento);
-    }
+
 }
