@@ -21,8 +21,14 @@ public class MetaController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "*")
-    public void test(@RequestBody MetaInsertDto dto) {
+    public void create(@RequestBody MetaInsertDto dto) {
         System.out.println(metaService.create(dto));
+    }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin(origins = "*")
+    public void update(@RequestBody MetaDto dto) {
+        System.out.println(metaService.update(dto));
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)

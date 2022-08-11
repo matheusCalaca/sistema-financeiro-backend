@@ -1,5 +1,7 @@
 package br.com.matheuscalaca.sistema.financeiro.entity.dto;
 
+import br.com.matheuscalaca.sistema.financeiro.entity.Meta;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -25,6 +27,11 @@ public class MetaDto {
 
     public MetaDto() {
     }
+
+    public Meta toMeta() {
+        return new Meta(this.id, this.titulo, this.data, this.valor, this.descricao);
+    }
+
 
     public Long getId() {
         return id;

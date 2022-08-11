@@ -15,4 +15,6 @@ public interface MetaServiceFacade {
     MetaDto findById(Long id);
 
     boolean deleteById(Long id);
+
+    MetaDto update(MetaDto dto);
 }

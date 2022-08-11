@@ -60,4 +60,19 @@ public class MetaService implements MetaServiceFacade {
             return false;
         }
     }
+
+    @Override
+    public MetaDto update(MetaDto dto) {
+        Long id = dto.getId();
+        System.out.println(id);
+        Meta meta = metaRepository.findById(id).get();
+        System.out.println(meta);
+        meta.setTitulo(dto.getTitulo());
+        meta.setData(dto.getData());
+        meta.setValor(dto.getValor());
+        meta.setDescricao(dto.getDescricao());
+
+        metaRepository.save(meta);
+        return null;
+    }
 }

@@ -1,5 +1,6 @@
 package br.com.matheuscalaca.sistema.financeiro.entity;
 
+import com.sun.istack.NotNull;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
@@ -13,10 +14,13 @@ public class Meta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String titulo;
 
+    @NotNull
     private Date data;
 
+    @NotNull
     private BigDecimal valor;
 
     private  String descricao;
@@ -29,6 +33,14 @@ public class Meta {
     }
 
     public Meta(String titulo, Date data, BigDecimal valor, String descricao) {
+        this.titulo = titulo;
+        this.data = data;
+        this.valor = valor;
+        this.descricao = descricao;
+    }
+
+    public Meta(Long id, String titulo, Date data, BigDecimal valor, String descricao) {
+        this.id = id;
         this.titulo = titulo;
         this.data = data;
         this.valor = valor;
