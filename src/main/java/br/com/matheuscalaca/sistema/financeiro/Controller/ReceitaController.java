@@ -1,17 +1,21 @@
 package br.com.matheuscalaca.sistema.financeiro.Controller;
 
-import br.com.matheuscalaca.sistema.financeiro.entity.dto.*;
-import br.com.matheuscalaca.sistema.financeiro.service.MetaServiceFacade;
+import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaDto;
+import br.com.matheuscalaca.sistema.financeiro.entity.dto.ReceitaDto;
+import br.com.matheuscalaca.sistema.financeiro.entity.dto.ReceitaInsertDto;
 import br.com.matheuscalaca.sistema.financeiro.service.ReceitaServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
 @RestController
 @RequestMapping("receita")
+@Validated
 public class ReceitaController {
 
     @Autowired
@@ -19,9 +23,16 @@ public class ReceitaController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "*")
-    public void test(@RequestBody ReceitaInsertDto dto) {
-        System.out.println(receitaService.create(dto));
+    public void create(@Valid @RequestBody ReceitaInsertDto dto) {
+        receitaService.create(dto);
     }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin(origins = "*")
+    public void update(@Valid @RequestBody ReceitaDto dto) {
+        receitaService.update(dto);
+    }
+
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "*")

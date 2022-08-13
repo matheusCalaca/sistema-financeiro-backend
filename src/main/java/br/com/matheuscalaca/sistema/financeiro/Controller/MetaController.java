@@ -29,12 +29,12 @@ public class MetaController {
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "*")
     public void update(@Valid @RequestBody MetaDto dto) {
-        System.out.println(metaService.update(dto));
+        metaService.update(dto);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "*")
-    public List<MetaDto> test(@RequestParam("idCliente") Long idCliente) {
+    public List<MetaDto> obterMetasPorIdCliente(@RequestParam("idCliente") Long idCliente) {
         List<MetaDto> metas = metaService.findByClientId(idCliente);
         System.out.println(metas);
         return metas;

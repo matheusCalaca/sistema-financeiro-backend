@@ -6,8 +6,6 @@ import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaInsertDto;
 import br.com.matheuscalaca.sistema.financeiro.repository.MetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,16 +21,9 @@ public class MetaService implements MetaServiceFacade {
 
     @Override
     public MetaInsertDto create(MetaInsertDto dto) {
-        //todo: convert
         Meta meta = dto.toMeta();
         meta.setCliente(clienteService.findById(dto.getIdCliente()));
-        //todo: insert
-        System.out.println(meta);
-            metaRepository.save(meta);
-
-
-
-        //todo: return
+        metaRepository.save(meta);
         return null;
     }
 
@@ -65,9 +56,8 @@ public class MetaService implements MetaServiceFacade {
     @Override
     public MetaDto update(MetaDto dto) {
         Long id = dto.getId();
-        System.out.println(id);
         Meta meta = metaRepository.findById(id).get();
-        System.out.println(meta);
+
         meta.setTitulo(dto.getTitulo());
         meta.setData(dto.getData());
         meta.setValor(dto.getValor());

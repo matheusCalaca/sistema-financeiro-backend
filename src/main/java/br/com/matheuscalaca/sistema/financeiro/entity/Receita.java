@@ -1,26 +1,34 @@
 package br.com.matheuscalaca.sistema.financeiro.entity;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
+@Valid
 public class Receita {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     private String nome;
 
+    @NotNull
     private Date data;
 
+    @NotNull
     private BigDecimal valor;
 
     private  String descricao;
 
     @ManyToOne
     @JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID", nullable = false)
+    @NotNull
     private Cliente cliente;
 
     public Receita() {

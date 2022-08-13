@@ -24,14 +24,9 @@ public class ReceitaService implements ReceitaServiceFacade {
 
     @Override
     public ReceitaInsertDto create(ReceitaInsertDto dto) {
-        //todo: convert
         Receita receita = dto.toReceita();
         receita.setCliente(clienteService.findById(dto.getIdCliente()));
-        //todo: insert
-
         receitaRepository.save(receita);
-
-        //todo: return
         return null;
     }
 
@@ -58,5 +53,17 @@ public class ReceitaService implements ReceitaServiceFacade {
         }catch (Exception ex){
             return false;
         }
+    }
+
+    @Override
+    public void update(ReceitaDto dto) {
+        Receita receita = receitaRepository.findById(dto.getId()).get();
+
+        receita.setNome(dto.getNome());
+        receita.setData(dto.getData());
+        receita.setValor(dto.getValor());
+        receita.setDescricao(dto.getDescricao());
+
+        receitaRepository.save(receita);
     }
 }

@@ -14,4 +14,6 @@ public interface ReceitaServiceFacade {
     ReceitaDto findById(Long id);
 
     boolean deleteById(Long id);
+
+    void update(ReceitaDto dto);
 }
