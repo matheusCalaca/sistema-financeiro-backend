@@ -4,10 +4,14 @@ import com.sun.istack.NotNull;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
+@Valid
 public class Meta {
 
     @Id
@@ -15,6 +19,7 @@ public class Meta {
     private Long id;
 
     @NotNull
+    @NotBlank(message = "Titulo não pode estar vazio")
     private String titulo;
 
     @NotNull

@@ -1,24 +1,28 @@
 package br.com.matheuscalaca.sistema.financeiro.entity.dto;
 
-import br.com.matheuscalaca.sistema.financeiro.entity.Cliente;
 import br.com.matheuscalaca.sistema.financeiro.entity.Meta;
+import com.sun.istack.NotNull;
 
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Valid
 public class MetaInsertDto {
 
+    @NotEmpty
     private String titulo;
 
+    @NotNull
     private Date data;
 
+    @NotNull
     private BigDecimal valor;
 
-    private  String descricao;
+    private String descricao;
 
+    @NotNull
     private Long idCliente;
 
 

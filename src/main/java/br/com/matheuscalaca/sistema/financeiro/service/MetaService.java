@@ -1,14 +1,13 @@
 package br.com.matheuscalaca.sistema.financeiro.service;
 
 import br.com.matheuscalaca.sistema.financeiro.entity.Meta;
-import br.com.matheuscalaca.sistema.financeiro.entity.dto.DespesaDto;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaDto;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaInsertDto;
-import br.com.matheuscalaca.sistema.financeiro.entity.dto.ReceitaDto;
-import br.com.matheuscalaca.sistema.financeiro.repository.ClienteRepository;
 import br.com.matheuscalaca.sistema.financeiro.repository.MetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,8 +27,10 @@ public class MetaService implements MetaServiceFacade {
         Meta meta = dto.toMeta();
         meta.setCliente(clienteService.findById(dto.getIdCliente()));
         //todo: insert
+        System.out.println(meta);
+            metaRepository.save(meta);
 
-        metaRepository.save(meta);
+
 
         //todo: return
         return null;
@@ -56,7 +57,7 @@ public class MetaService implements MetaServiceFacade {
         try {
             metaRepository.deleteById(id);
             return true;
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return false;
         }
     }

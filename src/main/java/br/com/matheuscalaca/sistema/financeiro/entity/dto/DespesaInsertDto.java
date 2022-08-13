@@ -2,26 +2,36 @@ package br.com.matheuscalaca.sistema.financeiro.entity.dto;
 
 import br.com.matheuscalaca.sistema.financeiro.entity.Despesa;
 import br.com.matheuscalaca.sistema.financeiro.entity.enums.MeioDePagamento;
+import com.sun.istack.NotNull;
 
 import javax.persistence.Enumerated;
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Valid
 public class DespesaInsertDto {
 
+    @NotNull
     private String nome;
 
+    @NotNull
     private String onde;
 
+    @NotNull
     private String porque;
 
+    @NotNull
     private BigDecimal valor;
 
+    @NotNull
     private Date data;
 
+    @NotNull
     @Enumerated
     private MeioDePagamento meioDePagamento;
 
+    @NotNull
     private Long idCategoria;
 
     private Long idCliente;

@@ -2,6 +2,8 @@ package br.com.matheuscalaca.sistema.financeiro.entity.dto;
 
 import br.com.matheuscalaca.sistema.financeiro.entity.Meta;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -9,10 +11,13 @@ public class MetaDto {
 
     private Long id;
 
+    @NotEmpty
     private String titulo;
 
+    @NotNull
     private Date data;
 
+    @NotNull
     private BigDecimal valor;
 
     private String descricao;
