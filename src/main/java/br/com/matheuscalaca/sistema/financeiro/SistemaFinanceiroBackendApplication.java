@@ -71,7 +71,7 @@ public class SistemaFinanceiroBackendApplication {
                 .version("1.0.0")
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
-                        .contact(new Contact("Matheus Calaça", "{SITE DO SISTEMA}", "1343166@sga.pucminas.br"))
+                        .contact(new Contact("Matheus Calaça", "https://granada-matheus-calaca.vercel.app/", "1343166@sga.pucminas.br"))
                         .build();
     }
 }
