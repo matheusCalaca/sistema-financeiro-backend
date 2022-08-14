@@ -14,8 +14,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
+import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -39,7 +42,8 @@ public class SistemaFinanceiroBackendApplication {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("br.com.matheuscalaca.sistema.financeiro.Controller"))
                 .paths(PathSelectors.any())
-                .build();
+                .build()
+                .apiInfo(apiInfo());
     }
 
     @Bean
@@ -58,5 +62,16 @@ public class SistemaFinanceiroBackendApplication {
 
     private boolean shouldRegisterLinksMapping(WebEndpointProperties webEndpointProperties, Environment environment, String basePath) {
         return webEndpointProperties.getDiscovery().isEnabled() && (StringUtils.hasText(basePath) || ManagementPortType.get(environment).equals(ManagementPortType.DIFFERENT));
+    }
+
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder()
+                .title("Granada API")
+                .description("Este é o back-end do projeto de conclusão do curso de Engenharia de Software da PUC MINAS.")
+                .version("1.0.0")
+                .license("Apache License Version 2.0")
+                .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
+                        .contact(new Contact("Matheus Calaça", "{SITE DO SISTEMA}", "1343166@sga.pucminas.br"))
+                        .build();
     }
 }
