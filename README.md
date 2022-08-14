@@ -9,4 +9,12 @@ a se livrar das dividas, conquistar suas metas como Casa propria, meio de transp
 
 ## Swagger
 
-http://localhost:8080/swagger-ui
+https://granada-matheus-calaca-puc.herokuapp.com/swagger-ui/#/
+
+# Heroku
+
+Login `heroku login`
+
+Create APP `heroku create`
+
+Push e deploy `git push heroku HEAD:master`
