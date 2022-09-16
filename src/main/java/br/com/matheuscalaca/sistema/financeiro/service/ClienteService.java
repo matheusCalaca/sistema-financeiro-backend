@@ -12,16 +12,18 @@ public class ClienteService implements ClienteServiceFacade {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    @Autowired
+    private UserServiceFacade userServiceFacade;
+
     @Override
     public ClienteInsertDto create(ClienteInsertDto dto) {
-        //todo Converter
+
         Cliente cliente = dto.toCliente();
         System.out.println(cliente);
-
-        //todo: save
         clienteRepository.save(cliente);
 
-        //todo: return
+        userServiceFacade.create(dto.getPassword(), cliente);
+
         return null;
     }
 

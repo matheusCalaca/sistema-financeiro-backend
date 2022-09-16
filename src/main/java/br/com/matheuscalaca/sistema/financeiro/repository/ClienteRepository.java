@@ -7,4 +7,6 @@ public interface ClienteRepository extends CrudRepository<Cliente, String> {
 
     public Cliente findClienteByIdIs(Long id);
 
+    public Cliente findByCpf(String cpf);
+
 }

@@ -2,10 +2,7 @@ package br.com.matheuscalaca.sistema.financeiro.Controller;
 
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.CategoriaDto;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.CategoriaInsertDto;
-import br.com.matheuscalaca.sistema.financeiro.entity.dto.DespesaInsertDto;
-import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaDto;
 import br.com.matheuscalaca.sistema.financeiro.service.CategoriaServiceFacade;
-import br.com.matheuscalaca.sistema.financeiro.service.DespesaServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
