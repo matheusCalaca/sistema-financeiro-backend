@@ -67,6 +67,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/swagger-resources/**").permitAll()
                 // autentication
                 .antMatchers(HttpMethod.POST, "/authenticate").permitAll()
+                // estado
+                .antMatchers(HttpMethod.GET, "/estado").permitAll()
                 // liberar all
                 .antMatchers(HttpMethod.POST, "/client").permitAll()
                 // all other requests need to be authenticated
