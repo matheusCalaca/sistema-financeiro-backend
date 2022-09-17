@@ -2,7 +2,6 @@ package br.com.matheuscalaca.sistema.financeiro.service;
 
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaDto;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaInsertDto;
-import br.com.matheuscalaca.sistema.financeiro.entity.dto.ReceitaDto;
 
 import java.util.List;
 
@@ -10,7 +9,7 @@ public interface MetaServiceFacade {
 
     MetaInsertDto create(MetaInsertDto dto, String token);
 
-    List<MetaDto> findByClientId(Long idClient);
+    List<MetaDto> findByToken(String token);
 
     MetaDto findById(Long id);
 

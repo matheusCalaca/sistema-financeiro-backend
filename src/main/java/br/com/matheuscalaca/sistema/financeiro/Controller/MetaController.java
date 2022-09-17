@@ -35,8 +35,8 @@ public class MetaController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "*")
-    public List<MetaDto> obterMetasPorIdCliente(@RequestParam("idCliente") Long idCliente) {
-        List<MetaDto> metas = metaService.findByClientId(idCliente);
+    public List<MetaDto> obterMetasPorIdCliente(@RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+        List<MetaDto> metas = metaService.findByToken(token);
         System.out.println(metas);
         return metas;
     }

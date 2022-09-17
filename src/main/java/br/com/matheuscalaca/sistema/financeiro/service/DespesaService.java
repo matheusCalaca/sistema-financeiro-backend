@@ -1,5 +1,6 @@
 package br.com.matheuscalaca.sistema.financeiro.service;
 
+import br.com.matheuscalaca.sistema.financeiro.entity.Cliente;
 import br.com.matheuscalaca.sistema.financeiro.entity.Despesa;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.DespesaDto;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.DespesaInsertDto;
@@ -38,8 +39,9 @@ public class DespesaService implements DespesaServiceFacade {
     }
 
     @Override
-    public List<DespesaDto> findByClientIdAndMonth(Long idCliente, Integer month) {
-        List<Despesa> despesas = despesaRepository.findByCliente_IdAndMonth(idCliente, month);
+    public List<DespesaDto> findByClientTokenAndMonth(String token, Integer month) {
+        Cliente client = clienteService.findClientByToken(token);
+        List<Despesa> despesas = despesaRepository.findByCliente_IdAndMonth(client.getId(), month);
 
         List<DespesaDto> despesaDtos = despesas.stream().map(despesa -> new DespesaDto(despesa.getId(), despesa.getNome(), despesa.getOnde(), despesa.getPorQue(), despesa.getValor(), despesa.getData(), despesa.getMeioDePagamento(), despesa.getCategoria().getNome())).collect(Collectors.toList());
 

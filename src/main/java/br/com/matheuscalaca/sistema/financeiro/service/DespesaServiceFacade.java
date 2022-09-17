@@ -8,7 +8,7 @@ import java.util.List;
 public interface DespesaServiceFacade {
     DespesaInsertDto create(DespesaInsertDto dto, String token);
 
-    List<DespesaDto> findByClientIdAndMonth(Long idCliente, Integer month);
+    List<DespesaDto> findByClientTokenAndMonth(String token, Integer month);
 
     DespesaDto findById(Long id);
 

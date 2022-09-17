@@ -1,5 +1,6 @@
 package br.com.matheuscalaca.sistema.financeiro.service;
 
+import br.com.matheuscalaca.sistema.financeiro.entity.Cliente;
 import br.com.matheuscalaca.sistema.financeiro.entity.Meta;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaDto;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaInsertDto;
@@ -28,8 +29,9 @@ public class MetaService implements MetaServiceFacade {
     }
 
     @Override
-    public List<MetaDto> findByClientId(Long idClient) {
-        List<Meta> metas = metaRepository.findByCliente_Id(idClient);
+    public List<MetaDto> findByToken(String token) {
+        Cliente client = clienteService.findClientByToken(token);
+        List<Meta> metas = metaRepository.findByCliente_Id(client.getId());
 
         List<MetaDto> metasDto = metas.stream().map(meta -> new MetaDto(meta.getId(), meta.getTitulo(), meta.getData(), meta.getValor(), meta.getDescricao())).collect(Collectors.toList());
 

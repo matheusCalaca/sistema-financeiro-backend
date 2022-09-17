@@ -8,7 +8,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 
@@ -27,8 +26,8 @@ public class DespesaController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "*")
-    public List<DespesaDto> getDespesas(@RequestParam("idCliente") Long idCliente, @RequestParam("month") Integer month) {
-        return despesaService.findByClientIdAndMonth(idCliente, month);
+    public List<DespesaDto> getDespesas( @RequestParam("month") Integer month, @RequestHeader(HttpHeaders.AUTHORIZATION) String token) {
+        return despesaService.findByClientTokenAndMonth(token, month);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
