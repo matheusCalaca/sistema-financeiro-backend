@@ -9,4 +9,6 @@ public interface ClienteRepository extends CrudRepository<Cliente, String> {
 
     public Cliente findByCpf(String cpf);
 
+    Cliente findClienteByEmail(String email);
+
 }

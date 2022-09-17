@@ -23,9 +23,9 @@ public class ReceitaService implements ReceitaServiceFacade {
     private ClienteServiceFacade clienteService;
 
     @Override
-    public ReceitaInsertDto create(ReceitaInsertDto dto) {
+    public ReceitaInsertDto create(ReceitaInsertDto dto, String token) {
         Receita receita = dto.toReceita();
-        receita.setCliente(clienteService.findById(dto.getIdCliente()));
+        receita.setCliente(clienteService.findClientByToken(token));
         receitaRepository.save(receita);
         return null;
     }

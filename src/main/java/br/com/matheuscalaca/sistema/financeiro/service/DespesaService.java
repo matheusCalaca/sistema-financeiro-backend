@@ -22,11 +22,12 @@ public class DespesaService implements DespesaServiceFacade {
     @Autowired
     private CategoriaServiceFacade categoriaService;
 
+
     @Override
-    public DespesaInsertDto create(DespesaInsertDto dto) {
+    public DespesaInsertDto create(DespesaInsertDto dto, String token) {
         //todo: convert
         Despesa despesa = dto.toDespesa();
-        despesa.setCliente(clienteService.findById(dto.getIdCliente()));
+        despesa.setCliente(clienteService.findClientByToken(token));
         despesa.setCategoria(categoriaService.findById(dto.getIdCategoria()));
         //todo: insert
 

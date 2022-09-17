@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface MetaServiceFacade {
 
-    MetaInsertDto create(MetaInsertDto dto);
+    MetaInsertDto create(MetaInsertDto dto, String token);
 
     List<MetaDto> findByClientId(Long idClient);
 

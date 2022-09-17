@@ -6,7 +6,7 @@ import br.com.matheuscalaca.sistema.financeiro.entity.dto.DespesaInsertDto;
 import java.util.List;
 
 public interface DespesaServiceFacade {
-    DespesaInsertDto create(DespesaInsertDto dto);
+    DespesaInsertDto create(DespesaInsertDto dto, String token);
 
     List<DespesaDto> findByClientIdAndMonth(Long idCliente, Integer month);
 

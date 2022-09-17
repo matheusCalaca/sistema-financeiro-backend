@@ -20,7 +20,7 @@ public class CategoriaController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "*")
     public void create(@RequestBody CategoriaInsertDto dto) {
-        System.out.println(categoriaService.create(dto));
+        categoriaService.create(dto);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)

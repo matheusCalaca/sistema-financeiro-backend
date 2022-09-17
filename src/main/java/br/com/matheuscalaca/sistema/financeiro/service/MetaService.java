@@ -20,9 +20,9 @@ public class MetaService implements MetaServiceFacade {
     private ClienteServiceFacade clienteService;
 
     @Override
-    public MetaInsertDto create(MetaInsertDto dto) {
+    public MetaInsertDto create(MetaInsertDto dto, String token) {
         Meta meta = dto.toMeta();
-        meta.setCliente(clienteService.findById(dto.getIdCliente()));
+        meta.setCliente(clienteService.findClientByToken(token));
         metaRepository.save(meta);
         return null;
     }

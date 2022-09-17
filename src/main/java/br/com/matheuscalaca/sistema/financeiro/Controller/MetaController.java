@@ -4,6 +4,7 @@ import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaDto;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaInsertDto;
 import br.com.matheuscalaca.sistema.financeiro.service.MetaServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +23,8 @@ public class MetaController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin(origins = "*")
-    public void create(@Valid @RequestBody MetaInsertDto dto) {
-        metaService.create(dto);
+    public void create(@RequestHeader(HttpHeaders.AUTHORIZATION) String token, @Valid @RequestBody MetaInsertDto dto) {
+        metaService.create(dto, token);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
