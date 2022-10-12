@@ -12,6 +12,8 @@ public class ClienteInsertDto {
 
     private EnderecoInsertDto endereco;
 
+    private String password;
+
     public String getName() {
         return name;
     }
@@ -42,6 +44,14 @@ public class ClienteInsertDto {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Cliente toCliente(){

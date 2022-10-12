@@ -1,5 +1,6 @@
 package br.com.matheuscalaca.sistema.financeiro.service;
 
+import br.com.matheuscalaca.sistema.financeiro.entity.Cliente;
 import br.com.matheuscalaca.sistema.financeiro.entity.Meta;
 import br.com.matheuscalaca.sistema.financeiro.entity.Receita;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.MetaInsertDto;
@@ -23,16 +24,17 @@ public class ReceitaService implements ReceitaServiceFacade {
     private ClienteServiceFacade clienteService;
 
     @Override
-    public ReceitaInsertDto create(ReceitaInsertDto dto) {
+    public ReceitaInsertDto create(ReceitaInsertDto dto, String token) {
         Receita receita = dto.toReceita();
-        receita.setCliente(clienteService.findById(dto.getIdCliente()));
+        receita.setCliente(clienteService.findClientByToken(token));
         receitaRepository.save(receita);
         return null;
     }
 
     @Override
-    public List<ReceitaDto> findByClientIdAndMonth(Long idCliente, Integer month) {
-        List<Receita> receitas = receitaRepository.findByClienteIdAndMonth(idCliente, month);
+    public List<ReceitaDto> findByClientTokenAndMonth(String token, Integer month) {
+        Cliente cliente = clienteService.findClientByToken(token);
+        List<Receita> receitas = receitaRepository.findByClienteIdAndMonth(cliente.getId(), month);
 
         List<ReceitaDto> receitasDto = receitas.stream().map(receita -> new ReceitaDto(receita.getId(), receita.getNome(), receita.getData(), receita.getValor(), receita.getDescricao())).collect(Collectors.toList());
 
@@ -44,6 +46,14 @@ public class ReceitaService implements ReceitaServiceFacade {
         ReceitaDto receitaDto = receitaRepository.findById(id).map(receita -> new ReceitaDto(receita.getId(), receita.getNome(), receita.getData(), receita.getValor(), receita.getDescricao())).get();
         return receitaDto;
     }
+
+    @Override
+    public ReceitaDto findByToken(String token) {
+        Cliente cliente = clienteService.findClientByToken(token);
+        ReceitaDto receitaDto = receitaRepository.findById(cliente.getId()).map(receita -> new ReceitaDto(receita.getId(), receita.getNome(), receita.getData(), receita.getValor(), receita.getDescricao())).get();
+        return receitaDto;
+    }
+
 
     @Override
     public boolean deleteById(Long id) {

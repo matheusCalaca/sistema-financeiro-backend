@@ -8,4 +8,6 @@ public interface ClienteServiceFacade {
     ClienteInsertDto create(ClienteInsertDto dto);
 
     Cliente findById(Long id);
+
+    Cliente findClientByToken(String token);
 }
