@@ -7,11 +7,13 @@ import java.util.List;
 
 public interface ReceitaServiceFacade {
 
-    ReceitaInsertDto create(ReceitaInsertDto dto);
+    ReceitaInsertDto create(ReceitaInsertDto dto, String token);
 
-    List<ReceitaDto> findByClientIdAndMonth(Long idCliente, Integer month);
+    List<ReceitaDto> findByClientTokenAndMonth(String idCliente, Integer month);
 
     ReceitaDto findById(Long id);
+
+    ReceitaDto findByToken(String token);
 
     boolean deleteById(Long id);
 

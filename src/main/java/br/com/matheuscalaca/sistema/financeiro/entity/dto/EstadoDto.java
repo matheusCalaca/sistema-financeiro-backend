@@ -5,6 +5,13 @@ import br.com.matheuscalaca.sistema.financeiro.entity.Estado;
 public class EstadoDto {
     private String uf;
 
+    public EstadoDto(String uf) {
+        this.uf = uf;
+    }
+
+    public EstadoDto() {
+    }
+
     public String getUf() {
         return uf;
     }

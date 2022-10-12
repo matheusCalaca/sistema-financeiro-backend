@@ -12,6 +12,8 @@ import java.util.Date;
 @Valid
 public class DespesaInsertDto {
 
+    private Long id;
+
     @NotNull
     private String nome;
 
@@ -98,6 +100,14 @@ public class DespesaInsertDto {
 
     public void setIdCliente(Long idCliente) {
         this.idCliente = idCliente;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override

@@ -63,10 +63,19 @@ public class Cliente {
         this.endereco = endereco;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Cliente{" +
-                "cpf='" + cpf + '\'' +
+                "id=" + id +
+                ", cpf='" + cpf + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", endereco=" + endereco +

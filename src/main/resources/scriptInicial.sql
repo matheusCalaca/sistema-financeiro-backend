@@ -55,22 +55,38 @@ insert into categoria (nome)
 values ('MANUTENÇÃO/REPARO');
 
 select * from categoria;
+SELECT setval('categoria_id_seq', (select max(id) from categoria));
+
+commit;
 
 -- criar Estado
 
 insert into estado (id, nome, uf) values (1, 'GOIAS', 'GO');
+SELECT setval('estado_id_seq', (select max(id) from estado));
+
 select * from Estado;
 
 -- criar Endereco
 insert into endereco (id, cep, cidade, complemento, logradouro, id_estado) values
     (1, '73870970', 'Cabeceiras', 'apt 13', 'Rua Ribeiro dos Santos, s/n Quadra 3 Lote 7 Térreo', 1);
+SELECT setval('endereco_id_seq', (select max(id) from endereco));
 select * from endereco;
 
 -- insert cliente
 
 insert into cliente (id, cpf, email, name, id_endereco) values
     (1, '32381020012', 'granada@matheuscalaca.com.br', 'Matheus Calaça', 1);
+
+SELECT setval('cliente_id_seq', (select max(id) from cliente));
+
 select * from cliente;
+
+-- inserir dados cliente com senha
+INSERT INTO user_detail (id, password, id_cliente) VALUES (1, 'admin', 1);
+SELECT setval('user_detail_id_seq', (select max(id) from user_detail));
+
+select * from user_detail;
+commit;
 
 -- criar receita inicial
 
@@ -85,6 +101,8 @@ insert into receita (id, data, descricao, nome, valor, id_cliente)values (8, '20
 insert into receita (id, data, descricao, nome, valor, id_cliente)values (9, '2023-03-01 00:00:00', 'salario do Mês', 'Salario do Mês', 2500, 1);
 insert into receita (id, data, descricao, nome, valor, id_cliente)values (10, '2023-04-01 00:00:00', 'salario do Mês', 'Salario do Mês', 2500, 1);
 insert into receita (id, data, descricao, nome, valor, id_cliente)values (11, '2023-05-01 00:00:00', 'salario do Mês', 'Salario do Mês', 2500, 1);
+SELECT setval('receita_id_seq', (select max(id) from receita));
+
 commit;
 
 SELECT * FROM RECEITA;
@@ -129,5 +147,7 @@ insert into despesa (id_categoria, id_cliente, data, meio_de_pagamento, nome, on
 insert into despesa (id_categoria, id_cliente, data, meio_de_pagamento, nome, onde, por_que, valor) values ((select id from categoria where nome = 'LAZER'), 1,	'2022-09-23 00:00:00',	1, 'Xbox assinatura', 'Xbox', 'compra de assinatura para jorgarmos', 44.99);
 insert into despesa (id_categoria, id_cliente, data, meio_de_pagamento, nome, onde, por_que, valor) values ((select id from categoria where nome = 'RESTAURANTE'), 1,	'2022-09-24 00:00:00',	1, 'UBER EATS', 'UBER EATS', 'compra de janta para o petro, o mesmo devolveu em dinheiro', 54.54);
 insert into despesa (id_categoria, id_cliente, data, meio_de_pagamento, nome, onde, por_que, valor) values ((select id from categoria where nome = 'RESTAURANTE'), 1,	'2022-09-25 00:00:00',	1, 'UBER EATS', 'UBER EATS', 'compra de milkshake pois estava com vontade de fazer isso a muito tempo', 45.88);
+SELECT setval('despesa_id_seq', (select max(id) from despesa));
+commit;
 
-
+select * from despesa;

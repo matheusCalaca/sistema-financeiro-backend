@@ -23,7 +23,9 @@ public class DespesaDto {
 
     private String categoria;
 
-    public DespesaDto(Long id, String nome, String onde, String porque, BigDecimal valor, Date data, MeioDePagamento meioDePagamento, String categoria) {
+    private  Long idCategoria;
+
+    public DespesaDto(Long id, String nome, String onde, String porque, BigDecimal valor, Date data, MeioDePagamento meioDePagamento, String categoria, Long idCategoria) {
         this.id = id;
         this.nome = nome;
         this.onde = onde;
@@ -32,6 +34,7 @@ public class DespesaDto {
         this.data = data;
         this.meioDePagamento = meioDePagamento;
         this.categoria = categoria;
+        this.idCategoria = idCategoria;
     }
 
     public DespesaDto() {
@@ -99,6 +102,14 @@ public class DespesaDto {
 
     public void setCategoria(String categoria) {
         this.categoria = categoria;
+    }
+
+    public Long getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(Long idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
     @Override
