@@ -13,4 +13,6 @@ public interface DespesaServiceFacade {
     DespesaDto findById(Long id);
 
     boolean deleteById(Long id);
+
+    void update(DespesaInsertDto dto);
 }

@@ -1,5 +1,6 @@
 package br.com.matheuscalaca.sistema.financeiro.service;
 
+import br.com.matheuscalaca.sistema.financeiro.entity.Categoria;
 import br.com.matheuscalaca.sistema.financeiro.entity.Cliente;
 import br.com.matheuscalaca.sistema.financeiro.entity.Despesa;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.DespesaDto;
@@ -43,14 +44,14 @@ public class DespesaService implements DespesaServiceFacade {
         Cliente client = clienteService.findClientByToken(token);
         List<Despesa> despesas = despesaRepository.findByCliente_IdAndMonth(client.getId(), month);
 
-        List<DespesaDto> despesaDtos = despesas.stream().map(despesa -> new DespesaDto(despesa.getId(), despesa.getNome(), despesa.getOnde(), despesa.getPorQue(), despesa.getValor(), despesa.getData(), despesa.getMeioDePagamento(), despesa.getCategoria().getNome())).collect(Collectors.toList());
+        List<DespesaDto> despesaDtos = despesas.stream().map(despesa -> new DespesaDto(despesa.getId(), despesa.getNome(), despesa.getOnde(), despesa.getPorQue(), despesa.getValor(), despesa.getData(), despesa.getMeioDePagamento(), despesa.getCategoria().getNome(), despesa.getCategoria().getId())).collect(Collectors.toList());
 
         return despesaDtos;
     }
 
     @Override
     public DespesaDto findById(Long id) {
-        DespesaDto despesaDto = despesaRepository.findById(id).map(despesa -> new DespesaDto(despesa.getId(), despesa.getNome(), despesa.getOnde(), despesa.getPorQue(), despesa.getValor(), despesa.getData(), despesa.getMeioDePagamento(), despesa.getCategoria().getNome())).get();
+        DespesaDto despesaDto = despesaRepository.findById(id).map(despesa -> new DespesaDto(despesa.getId(), despesa.getNome(), despesa.getOnde(), despesa.getPorQue(), despesa.getValor(), despesa.getData(), despesa.getMeioDePagamento(), despesa.getCategoria().getNome(), despesa.getCategoria().getId())).get();
 
         return despesaDto;
     }
@@ -60,8 +61,28 @@ public class DespesaService implements DespesaServiceFacade {
         try {
             despesaRepository.deleteById(id);
             return true;
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return false;
         }
+    }
+
+    @Override
+    public void update(DespesaInsertDto dto) {
+        System.out.println(dto);
+
+        Despesa despesa = despesaRepository.findById(dto.getId()).get();
+        System.out.println(despesa);
+        despesa.setNome(dto.getNome());
+        despesa.setData(dto.getData());
+        despesa.setOnde(dto.getOnde());
+        despesa.setValor(dto.getValor());
+        despesa.setPorQue(dto.getPorque());
+
+        Categoria categoria = categoriaService.findById(dto.getIdCategoria());
+        despesa.setCategoria(categoria);
+        despesa.setMeioDePagamento(dto.getMeioDePagamento());
+
+
+        despesaRepository.save(despesa);
     }
 }

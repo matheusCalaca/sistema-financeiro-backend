@@ -2,12 +2,14 @@ package br.com.matheuscalaca.sistema.financeiro.Controller;
 
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.DespesaDto;
 import br.com.matheuscalaca.sistema.financeiro.entity.dto.DespesaInsertDto;
+import br.com.matheuscalaca.sistema.financeiro.entity.dto.ReceitaDto;
 import br.com.matheuscalaca.sistema.financeiro.service.DespesaServiceFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -40,6 +42,12 @@ public class DespesaController {
     @CrossOrigin(origins = "*")
     public boolean deleteById(@PathVariable("id") Long id) {
         return despesaService.deleteById(id);
+    }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin(origins = "*")
+    public void update(@Valid @RequestBody DespesaInsertDto dto) {
+        despesaService.update(dto);
     }
 
 }
