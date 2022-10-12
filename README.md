@@ -17,4 +17,4 @@ Login `heroku login`
 
 Create APP `heroku create`
 
-Push e deploy `git push heroku HEAD:master`
+Push e deploy `git push heroku main`
