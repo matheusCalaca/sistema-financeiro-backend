@@ -14,6 +14,7 @@ public class Cliente {
 
     private String name;
 
+    @Column(unique = true)
     private String email;
 
     @ManyToOne(cascade = CascadeType.ALL)
