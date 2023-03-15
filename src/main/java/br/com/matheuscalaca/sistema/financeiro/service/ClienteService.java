@@ -23,7 +23,6 @@ public class ClienteService implements ClienteServiceFacade {
     public ClienteInsertDto create(ClienteInsertDto dto) {
 
         Cliente cliente = dto.toCliente();
-        System.out.println(cliente);
         clienteRepository.save(cliente);
 
         userServiceFacade.create(dto.getPassword(), cliente);

@@ -7,7 +7,7 @@ public interface UserServiceFacade {
 
     void create(String password, Cliente cliente);
 
-    UserDetails loadByEmail(String email, String password);
+//    UserDetails loadByEmail(String email, String password);
 
     UserDetails loadByEmail(String email);
 }
